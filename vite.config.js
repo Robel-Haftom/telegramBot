@@ -4,10 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "/telegramBot/",
   server: {
     allowedHosts: [
-      '9351262d9857.ngrok-free.app',
+      "252013eef38f.ngrok-free.app"
     ]
   }
 })
