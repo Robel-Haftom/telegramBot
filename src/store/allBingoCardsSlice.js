@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import gameService from "../services/gameService";
 
 const initialState = {
     allBingoCards: [],
     status: "idle",
     error: ""
 }
+
 const allBingoCardsSlice = createSlice({
     name:"allBingoCards",
     initialState,
@@ -29,12 +30,13 @@ const allBingoCardsSlice = createSlice({
 });
 
 export const getAllBingoCards = createAsyncThunk("bingoCards/allBingoCards",
-    async () =>{
+    async (_, { rejectWithValue }) =>{
         try {
-            const response = await axios.get("http://localhost:8080/games/start");
-            return response.data;
+            // Use the gameService to get bingo cards from Spring Boot backend
+            const bingoCards = await gameService.getBingoCards();
+            return bingoCards;
         } catch (error) {
-            return error.message;
+            return rejectWithValue(error.message || "Failed to fetch bingo cards");
         }
     }
 )

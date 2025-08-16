@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     allowedHosts: [
-      "252013eef38f.ngrok-free.app"
+      "definite-bird-briefly.ngrok-free.app"
     ]
   }
 })
